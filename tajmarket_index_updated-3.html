@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#16a34a">
+<title>Tajmarket — 1000 мелочей</title>
+<style>
+:root{--green:#16a34a;--green2:#15803d;--orange:#f97316;--bg:#f5f7f6;--card:#fff;--text:#17211b;--muted:#66736b;--line:#e4e9e5;--danger:#dc2626;--shadow:0 8px 28px rgba(20,40,28,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.wrap{max-width:1180px;margin:auto;padding:0 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top{height:66px;display:flex;align-items:center;gap:14px}.logo{font-size:25px;font-weight:900;color:var(--green);letter-spacing:-1px}.logo span{color:var(--orange)}
+.search{flex:1;position:relative}.search input{width:100%;height:44px;border:1px solid var(--line);border-radius:13px;padding:0 15px 0 42px;background:#f8faf9;outline:none}.search input:focus{border-color:#86efac;background:white}.search:before{content:"⌕";position:absolute;left:15px;top:7px;font-size:25px;color:var(--muted);z-index:1}
+.btn{padding:11px 16px;border-radius:12px;font-weight:700}.primary{background:var(--green);color:#fff}.primary:hover{background:var(--green2)}.light{background:#eef7f0;color:var(--green2)}.orange{background:var(--orange);color:#fff}.danger{background:#fee2e2;color:#b91c1c}
+nav{display:flex;gap:8px;overflow:auto;padding:0 0 12px}.chip{white-space:nowrap;padding:9px 14px;border:1px solid var(--line);background:white;border-radius:999px;color:#4b5b52}.chip.active{background:#dcfce7;border-color:#86efac;color:#166534}
+.hero{margin:22px 0;border-radius:24px;padding:30px;background:linear-gradient(135deg,#dcfce7,#fff7ed);display:flex;justify-content:space-between;gap:20px;align-items:center}.hero h1{font-size:clamp(30px,6vw,52px);line-height:1.02;margin:0 0 10px;letter-spacing:-2px}.hero p{color:var(--muted);max-width:600px;font-size:17px}.hero .emoji{font-size:90px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 0}.toolbar h2{margin:0}.sort{padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);position:relative}.pic{height:190px;background:linear-gradient(135deg,#e8f7ec,#fff);display:flex;align-items:center;justify-content:center;font-size:70px;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover}.body{padding:14px}.title{font-weight:800;margin-bottom:7px}.price{font-size:20px;font-weight:900}.meta{font-size:13px;color:var(--muted);margin-top:8px}.badge{position:absolute;top:10px;left:10px;background:var(--orange);color:#fff;border-radius:8px;padding:5px 8px;font-size:12px;font-weight:800}
+.empty{text-align:center;padding:50px;color:var(--muted);grid-column:1/-1}.section{margin:28px 0}
+footer{margin-top:45px;background:#142019;color:#d9e3dc;padding:28px 0}.footerin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.small{font-size:13px;color:#9fb0a5}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}.modal.open{display:flex}.box{background:#fff;width:min(620px,100%);max-height:90vh;overflow:auto;border-radius:20px;padding:22px}.box h2{margin-top:0}.close{float:right;background:#f1f5f2;border-radius:10px;padding:7px 11px}.form{display:grid;gap:12px}.form input,.form select,.form textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;outline:none}.form textarea{min-height:100px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{padding:12px;border-radius:12px;background:#fff7ed;color:#9a3412;font-size:13px}.photo-preview{display:none;width:100%;height:190px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}.detail-img{width:100%;max-height:360px;object-fit:cover;border-radius:14px;margin-bottom:14px}.detail-desc{white-space:pre-wrap;color:var(--muted);line-height:1.6}
+.adminbar{display:none;background:#111827;color:white;padding:10px}.adminbar.show{display:block}.adminbar .wrap{display:flex;justify-content:space-between;align-items:center}
+.admin-list{display:grid;gap:10px}.admin-item{border:1px solid var(--line);padding:12px;border-radius:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:680px){.top{height:auto;padding:10px 0;flex-wrap:wrap}.search{order:3;flex-basis:100%}.hero{padding:22px}.hero .emoji{font-size:55px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.pic{height:145px;font-size:55px}.body{padding:11px}.toolbar{align-items:flex-start;flex-direction:column}.row{grid-template-columns:1fr}.top .btn{padding:10px 11px}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.pic{height:180px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div class="logo">Taj<span>market</span></div>
+    <div class="search"><input id="search" placeholder="Что ищете? Например: телефон, мебель..."></div>
+    <button class="btn light" onclick="openModal('post')">＋ Подать объявление</button>
+    <button class="btn" style="background:#f1f5f2" onclick="openModal('login')">Войти</button>
+  </div>
+  <div class="wrap"><nav id="cats"></nav></div>
+</header>
+
+<div id="adminbar" class="adminbar"><div class="wrap"><b>🔐 Режим администратора</b><button class="btn danger" onclick="logoutAdmin()">Выйти</button></div></div>
+
+<main class="wrap">
+  <section class="hero">
+    <div><h1>Покупай. Продавай.<br><span style="color:var(--green)">Зарабатывай.</span></h1>
+    <p>Tajmarket — современная доска объявлений для Таджикистана. Тысячи товаров, услуг и предложений в одном месте.</p>
+    <button class="btn primary" onclick="openModal('post')">Разместить объявление</button></div>
+    <div class="emoji">🛍️</div>
+  </section>
+
+  <section class="section">
+    <div class="toolbar"><h2 id="resultTitle">Свежие объявления</h2><select class="sort" id="sort"><option value="new">Сначала новые</option><option value="priceUp">Цена: по возрастанию</option><option value="priceDown">Цена: по убыванию</option></select></div>
+    <div class="grid" id="products"></div>
+  </section>
+</main>
+
+<footer><div class="wrap footerin"><div><b style="font-size:20px">Tajmarket</b><div class="small">1000 мелочей для жизни в Таджикистане</div></div><div class="small">Размещение объявления — бесплатно<br>Продвижение объявления — 20 сомони</div><div class="small">© 2026 Tajmarket</div></div></footer>
+
+<div class="modal" id="post"><div class="box"><button class="close" onclick="closeModal('post')">✕</button><h2>Новое объявление</h2>
+<form class="form" id="postForm">
+<input id="pTitle" required placeholder="Название товара">
+<div class="row"><input id="pPrice" type="number" min="0" required placeholder="Цена, сомони"><select id="pCat"></select></div>
+<input id="pCity" required placeholder="Город, например Душанбе">
+<textarea id="pDesc" placeholder="Описание товара"></textarea>
+<input id="pPhoto" type="file" accept="image/*">
+<img id="photoPreview" class="photo-preview" alt="Предпросмотр фото">
+<select id="pIcon"><option>📦</option><option>📱</option><option>🚗</option><option>🏠</option><option>👕</option><option>🛠️</option><option>💻</option><option>🍎</option></select>
+<button class="btn primary" type="submit">Опубликовать</button>
+<div class="notice">Фото и объявление сохраняются в браузере этого устройства. Для общей базы объявлений между всеми пользователями следующим этапом подключим Supabase/сервер.</div>
+</form></div></div>
+
+<div class="modal" id="login"><div class="box"><button class="close" onclick="closeModal('login')">✕</button><h2>Вход</h2><form class="form" id="loginForm">
+<input id="email" type="email" required placeholder="Email">
+<input id="pass" type="password" required placeholder="Пароль">
+<button class="btn primary">Войти</button>
+<div class="notice">Демо-доступ администратора: admin@tajmarket.tj / admin123. Для настоящего сайта пароль нельзя хранить в этом HTML — нужен сервер.</div>
+</form></div></div>
+
+<div class="modal" id="detail"><div class="box"><button class="close" onclick="closeModal('detail')">✕</button><div id="detailContent"></div></div></div>
+
+<div class="modal" id="admin"><div class="box"><button class="close" onclick="closeModal('admin')">✕</button><h2>Панель администратора</h2>
+<p class="small">Здесь отображаются объявления, сохранённые в браузере. Это демонстрационная панель для GitHub Pages.</p>
+<div id="adminList" class="admin-list"></div></div></div>
+
+<script>
+const categories=["Все","Электроника","Авто","Недвижимость","Одежда","Дом и сад","Услуги","Работа","Красота","Другое"];
+const defaultProducts=[
+{id:1,title:"Смартфон Samsung Galaxy",price:1850,cat:"Электроника",city:"Душанбе",icon:"📱",date:Date.now()-1000*60*30,promo:true},
+{id:2,title:"Toyota Corolla",price:98000,cat:"Авто",city:"Худжанд",icon:"🚗",date:Date.now()-1000*60*60*2,promo:false},
+{id:3,title:"Диван для дома",price:3200,cat:"Дом и сад",city:"Душанбе",icon:"🛋️",date:Date.now()-1000*60*60*4,promo:true},
+{id:4,title:"Мужская куртка",price:450,cat:"Одежда",city:"Истаравшан",icon:"🧥",date:Date.now()-1000*60*60*5,promo:false},
+{id:5,title:"Ноутбук для работы",price:4200,cat:"Электроника",city:"Душанбе",icon:"💻",date:Date.now()-1000*60*60*7,promo:false},
+{id:6,title:"Ремонт квартир",price:0,cat:"Услуги",city:"Худжанд",icon:"🛠️",date:Date.now()-1000*60*60*9,promo:false},
+{id:7,title:"Свежие яблоки",price:8,cat:"Другое",city:"Истаравшан",icon:"🍎",date:Date.now()-1000*60*60*12,promo:false},
+{id:8,title:"Квартира 2 комнаты",price:2500,cat:"Недвижимость",city:"Душанбе",icon:"🏠",date:Date.now()-1000*60*60*15,promo:false}
+];
+let products=JSON.parse(localStorage.getItem("tajmarket_products")||"null")||defaultProducts;
+let activeCat="Все", selectedPhoto="";
+
+const money=n=>n?new Intl.NumberFormat("ru-RU").format(n)+" сомони":"Цена договорная";
+function save(){localStorage.setItem("tajmarket_products",JSON.stringify(products))}
+function renderCats(){const el=document.getElementById("cats");el.innerHTML=categories.map(c=>`<button class="chip ${c===activeCat?"active":""}" onclick="setCat('${c}')">${c}</button>`).join("");document.getElementById("pCat").innerHTML=categories.filter(x=>x!=="Все").map(c=>`<option>${c}</option>`).join("")}
+function render(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ let list=products.filter(p=>(activeCat==="Все"||p.cat===activeCat)&&(!q||[p.title,p.cat,p.city,p.desc||""].join(" ").toLowerCase().includes(q)));
+ const s=document.getElementById("sort").value;
+ if(s==="priceUp") list.sort((a,b)=>(a.price||0)-(b.price||0)); else if(s==="priceDown") list.sort((a,b)=>(b.price||0)-(a.price||0)); else list.sort((a,b)=>(b.promo-a.promo)||(b.date-a.date));
+ document.getElementById("resultTitle").textContent=q?`Результаты: ${list.length}`:(activeCat==="Все"?"Свежие объявления":activeCat);
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="pic">${p.photo?`<img src="${p.photo}" alt="${esc(p.title)}">`:(p.icon||"📦")}</div>${p.promo?'<div class="badge">ТОП • 20 сомони</div>':''}<div class="body"><div class="title">${esc(p.title)}</div><div class="price">${money(p.price)}</div><div class="meta">📍 ${esc(p.city)} · ${esc(p.cat)}</div><button class="btn light" style="width:100%;margin-top:12px" onclick="viewItem(${p.id})">Подробнее</button></div></article>`).join(""):`<div class="empty">По вашему запросу ничего не найдено.<br><br><button class="btn primary" onclick="openModal('post')">Разместить объявление</button></div>`;
+}
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function setCat(c){activeCat=c;renderCats();render()}
+function openModal(id){document.getElementById(id).classList.add("open");if(id==="admin")renderAdmin()}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+function viewItem(id){
+ const p=products.find(x=>x.id===id); if(!p)return;
+ document.getElementById("detailContent").innerHTML=`
+ ${p.photo?`<img class="detail-img" src="${p.photo}" alt="${esc(p.title)}">`:``}
+ <h2>${esc(p.title)}</h2>
+ <div class="price">${money(p.price)}</div>
+ <div class="meta">📍 ${esc(p.city)} · ${esc(p.cat)}</div>
+ <p class="detail-desc">${esc(p.desc||"Описание не указано.")}</p>
+ <button class="btn primary" style="width:100%" onclick="alert('Связь с продавцом будет подключена на следующем этапе.')">Связаться с продавцом</button>`;
+ openModal("detail");
+}
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("sort").addEventListener("change",render);
+
+document.getElementById("pPhoto").addEventListener("change",e=>{
+ const file=e.target.files[0];
+ if(!file){selectedPhoto="";document.getElementById("photoPreview").style.display="none";return}
+ if(file.size>2*1024*1024){alert("Фото слишком большое. Выберите файл до 2 МБ.");e.target.value="";return}
+ const reader=new FileReader();
+ reader.onload=()=>{selectedPhoto=reader.result;const img=document.getElementById("photoPreview");img.src=selectedPhoto;img.style.display="block"};
+ reader.readAsDataURL(file);
+});
+
+document.getElementById("postForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ products.unshift({
+   id:Date.now(),title:pTitle.value.trim(),price:Number(pPrice.value),cat:pCat.value,
+   city:pCity.value.trim(),desc:pDesc.value.trim(),icon:pIcon.value,date:Date.now(),promo:false,photo:selectedPhoto||""
+ });
+ try{save()}catch(err){alert("Не удалось сохранить объявление. Возможно, хранилище браузера заполнено.");return}
+ render();closeModal("post");e.target.reset();selectedPhoto="";document.getElementById("photoPreview").style.display="none";alert("Объявление опубликовано!");
+});
+
+document.getElementById("loginForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(email.value==="admin@tajmarket.tj"&&pass.value==="admin123"){
+   sessionStorage.setItem("taj_admin","1");closeModal("login");document.getElementById("adminbar").classList.add("show");openModal("admin");
+ }else alert("Неверный email или пароль.");
+});
+function renderAdmin(){document.getElementById("adminList").innerHTML=products.map(p=>`<div class="admin-item"><div><b>${esc(p.title)}</b><div class="small">${money(p.price)} · ${esc(p.city)}</div></div><button class="btn danger" onclick="deleteProduct(${p.id})">Удалить</button></div>`).join("")}
+function deleteProduct(id){if(confirm("Удалить объявление?")){products=products.filter(p=>p.id!==id);save();render();renderAdmin()}}
+function logoutAdmin(){sessionStorage.removeItem("taj_admin");document.getElementById("adminbar").classList.remove("show")}
+renderCats();render();if(sessionStorage.getItem("taj_admin"))document.getElementById("adminbar").classList.add("show");
+</script>
+</body>
+</html>
